@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<meta name="robots" content="noindex">
+<title>Old School Polling</title>
+<link rel="stylesheet" href="/css/main.css">
+<script src="/js/jquery.min.1.11.2.js"></script>
+</head>
+<body class="container-fluid">
+    <h1 class="page-header">Old School Polling</h1>
+    <article class="row">
+        <section class="col-md-12">
+            <h3>Display Server Side Updates</h3>
+            <p>When the server side data has changed, display a message. In this case, the server will output a new time every minute in a JSON response requested at this URL: '<a href="/time" target="_blank">/time</a>'</p>
+            <p>Our client side code polls the server by sending an http GET request to the URL above every second. If the response data has changed, it's displayed below.</p>
+            <p>
+                <button type="button" id="btn-start-polling" class="btn btn-success">Start</button>
+                <button type="button" id="btn-stop-polling" class="btn btn-danger">Stop</button>
+            </p>
+            <div id="server-time-display"></div>
+        </section>
+    </article>
+    <script src="/js/poll.js"></script>
+</body>
+</html>
