@@ -1,0 +1,29 @@
+{
+  "name": "websockets-examples",
+  "version": "0.0.1",
+  "author": "Adam Henson <adamhenson1979@gmail.com>",
+  "description": "WebSockets examples.",
+  "contributors": [
+    {
+      "name": "Adam Henson",
+      "email": "adamhenson1979@gmail.com"
+    }
+  ],
+  "scripts": {
+    "start": "server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.10.0",
+    "errorhandler": "^1.3.2",
+    "express": "^4.10.6",
+    "express-flash": "0.0.2",
+    "express-session": "^1.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adamhenson/websockets-examples.git"
+  },
+  "engines": {
+    "node": "0.10.x"
+  }
+}
