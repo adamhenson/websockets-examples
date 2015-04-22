@@ -31,5 +31,5 @@ Supported on most modern browsers including IE10.
 [Can I Use WebSockets](http://caniuse.com/#feat=websockets)
 
 ## Helpful Links
-- [Writing WebSocket client applications](https://developer.mozilla.org/en-US/docs/WebSockets/Writing_WebSocket_client_applications)
+- [Writing WebSocket client applications | MDN](https://developer.mozilla.org/en-US/docs/WebSockets/Writing_WebSocket_client_applications)
 - [WebSocket over HTTP/2.0](https://github.com/yutakahirano/ws-over-http2/blob/master/ws-over-http2-message-mapping.md)
