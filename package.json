@@ -18,7 +18,9 @@
     "express": "^4.10.6",
     "express-flash": "0.0.2",
     "express-session": "^1.9.3",
-    "ws": "~0.7.1"
+    "ws": "~0.7.1",
+    "s3-image-uploader": "0.0.9",
+    "multer": "^0.1.8"
   },
   "repository": {
     "type": "git",

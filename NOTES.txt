@@ -1,0 +1,3 @@
+# set environment variables
+export NODE_AWS_KEY=<aws key>
+export NODE_AWS_SECRET=<aws secret>

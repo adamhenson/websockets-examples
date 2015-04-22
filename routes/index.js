@@ -1,4 +1,4 @@
-module.exports = function(app, utils){
+module.exports = function(app, server, utils){
 
   app.get('/', function(req, res, next){
 

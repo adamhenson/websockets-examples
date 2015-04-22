@@ -14,21 +14,21 @@ module.exports = function() {
   // middleware
   var bodyParser = require('body-parser');
   var errorhandler = require('errorhandler');
+  var multer  = require('multer');
 
   // configuration
   app.use(express.static(__dirname + '/public'));
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
+  app.use(multer({ dest: './public/images/uploads/'}));
   app.use(errorhandler());
 
-  // websocket server
+  // used for websocket server
   server = http.createServer(app);
-  var websocket = new (require('./controllers/websockets'))(server, utils, { 'timeSend' : true })
-  websocket.start();
 
   // routes
   fs.readdirSync('./routes').forEach(function(file) {
-    require('./routes/' + file)(app, utils);
+    require('./routes/' + file)(app, server, utils);
   });
 
   // listen
