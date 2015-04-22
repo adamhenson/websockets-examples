@@ -27,6 +27,7 @@ Ultimately, once in place - we write less and simpler code.
 
 ## Browser Support
 Supported on most modern browsers including IE10.
+
 [Can I Use WebSockets](http://caniuse.com/#feat=websockets)
 
 ## Helpful Links
