@@ -3,6 +3,8 @@
   var time = false;
   var ws = false;
 
+  // Get the server time and append data to the DOM.
+  // Also, store the time, so we only display a new time.
   function displayServerTime(serverTime){
 
     if(serverTime !== time){
@@ -12,7 +14,14 @@
 
   };
 
-  $('#btn-start-polling').on('click', function(e){
+  /**
+   *
+   * DOM event binding
+   *
+   */
+
+  // instantiate a WebSocket connection and bind to the message event
+  $('#btn-start').on('click', function(e){
 
     e.preventDefault();
     $('#server-time-display').append('<p>Logging server time every minute...</p>');
@@ -25,7 +34,8 @@
 
   });
 
-  $('#btn-stop-polling').on('click', function(e){
+  // close WebSocket connection by sending message to the server
+  $('#btn-stop').on('click', function(e){
 
     e.preventDefault();
     $('#server-time-display').append('<p>...Stopped logging.</p>');
