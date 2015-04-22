@@ -6,6 +6,7 @@ module.exports = function() {
   var package = require('./package.json');
   // core modules
   var fs = require('fs');
+  var http = require('http');
   // express
   var express = require('express');
   var app = express();
@@ -24,6 +25,11 @@ module.exports = function() {
   fs.readdirSync('./routes').forEach(function(file) {
     require('./routes/' + file)(app, utils);
   });
+
+  // websocket server
+  app = http.createServer(app);
+  var websocketServer = require('./controllers/websockets');
+  websocketServer.start(app, utils);
 
   // listen
   app.listen(port, function () {
