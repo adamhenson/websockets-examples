@@ -1,7 +1,7 @@
 var WebSocketServer = require('ws').Server;
 
-function Websocket(app, utils, config){
-  this.app = app;
+function Websocket(server, utils, config){
+  this.server = server;
   this.utils = utils;
   this.wss = false;
   this.ws = false;
@@ -15,7 +15,7 @@ Websocket.prototype = {
 
     var self = this;
 
-    self.wss = new WebSocketServer({ 'server' : self.app });
+    self.wss = new WebSocketServer({ 'server' : self.server });
 
     self.wss.on('connection', function connection(ws) {
       console.log('websocket connected');

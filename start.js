@@ -4,6 +4,7 @@ module.exports = function() {
   var port = 8080;
   // config
   var package = require('./package.json');
+  var utils = require('./controllers/utils');
   // core modules
   var fs = require('fs');
   var http = require('http');
@@ -20,19 +21,18 @@ module.exports = function() {
   app.use(bodyParser.json());
   app.use(errorhandler());
 
+  // websocket server
+  server = http.createServer(app);
+  var websocket = new (require('./controllers/websockets'))(server, utils, { 'timeSend' : true })
+  websocket.start();
+
   // routes
-  var utils = require('./controllers/utils');
   fs.readdirSync('./routes').forEach(function(file) {
     require('./routes/' + file)(app, utils);
   });
 
-  // websocket server
-  app = http.createServer(app);
-  var websocket = new (require('./controllers/websockets'))(app, utils, { 'timeSend' : true })
-  websocket.start();
-
   // listen
-  app.listen(port, function () {
+  server.listen(port, function () {
     console.log('%s listening at port %s', package.name, port);
   });
 
