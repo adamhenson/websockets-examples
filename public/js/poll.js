@@ -27,6 +27,7 @@
   $('#btn-start-polling').on('click', function(e){
 
     e.preventDefault();
+    $('#server-time-display').append('<p>Logging server time every minute...</p>');
 
     poller = setInterval(function(){
       displayServerTime();
@@ -37,6 +38,7 @@
   $('#btn-stop-polling').on('click', function(e){
 
     e.preventDefault();
+    $('#server-time-display').append('<p>...Stopped logging.</p>');
     clearInterval(poller);
 
   });

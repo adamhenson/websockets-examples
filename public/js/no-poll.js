@@ -1,6 +1,7 @@
 (function(){
 
   var time = false;
+  var ws = false;
 
   function displayServerTime(serverTime){
 
@@ -14,11 +15,24 @@
   $('#btn-start-polling').on('click', function(e){
 
     e.preventDefault();
+    $('#server-time-display').append('<p>Logging server time every minute...</p>');
 
-    var ws = new WebSocket('ws://localhost:8080');
+    ws = new WebSocket('ws://localhost:8080');
 
     ws.onmessage = function(e){
       displayServerTime(e.data);
+    }
+
+  });
+
+  $('#btn-stop-polling').on('click', function(e){
+
+    e.preventDefault();
+    $('#server-time-display').append('<p>...Stopped logging.</p>');
+
+    if(ws) {
+      ws.send('stopTimeSend');
+      ws.close();
     }
 
   });

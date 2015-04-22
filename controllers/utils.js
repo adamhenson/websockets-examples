@@ -14,6 +14,7 @@ module.exports = {
     var minute = (date.getMinutes() >= 10)
       ? date.getMinutes()
       : '0' + date.getMinutes();
+    if(hour === 0) hour = 12;
     var time = hour + ':' + minute;
     return time;
   }

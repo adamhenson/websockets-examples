@@ -28,8 +28,8 @@ module.exports = function() {
 
   // websocket server
   app = http.createServer(app);
-  var websocketServer = require('./controllers/websockets');
-  websocketServer.start(app, utils);
+  var websocket = new (require('./controllers/websockets'))(app, utils, { 'timeSend' : true })
+  websocket.start();
 
   // listen
   app.listen(port, function () {
