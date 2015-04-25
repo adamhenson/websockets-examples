@@ -75,6 +75,7 @@
     $('.alert').remove();
     $('img').remove();
 
+    // manage websocket connections
     createWebsocketConnection(function(event){
       var message = JSON.parse(event.data);
       if(typeof message.type !== 'undefined') {
