@@ -1,5 +1,22 @@
 (function(){
 
+  var ws = {
+    host : 'ws://' + window.document.location.host.replace(/:.*/, '') + ':8080',
+    connections : []
+  };
+
+  function createWebsocketConnection(onmessage){
+    var length = ws.connections.length;
+    ws.connections[length] = new WebSocket(ws.host);
+    ws.connections[length].onclose = function(){
+      createWebsocketConnection(onmessage);
+    }
+    // handle websocket events
+    ws.connections[length].onmessage = function(event){
+      onmessage.call(this, event);
+    };
+  };
+
   function submit($this, callback){
 
     var formData = new FormData($this[0]);
@@ -58,17 +75,14 @@
     $('.alert').remove();
     $('img').remove();
 
-    var host = window.document.location.host.replace(/:.*/, '');
-    var ws = new WebSocket('ws://' + host + ':8080');
-    ws.onmessage = function(event){
+    createWebsocketConnection(function(event){
       var message = JSON.parse(event.data);
-      //console.log(message);
       if(typeof message.type !== 'undefined') {
         if(message.type === 'progress') displayProgress(message);
         else if(message.type === 'result') displayResult(message);
         else if(message.type === 'error') displayResult(message);
       };
-    };
+    });
 
   });
 
