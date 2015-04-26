@@ -1,28 +1,37 @@
-var cluster = require('cluster');
-var numCPUs = require('os').cpus().length;
-var start = require('./start');
+// environment
+var port = 8080;
+// config
+var package = require('./package.json');
+var utils = require('./controllers/utils');
+// core modules
+var fs = require('fs');
+var http = require('http');
+// express
+var express = require('express');
+var app = express();
+// middleware
+var bodyParser = require('body-parser');
+var errorhandler = require('errorhandler');
+var multer  = require('multer');
 
-if (cluster.isMaster) {
+// configuration
+app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(multer({ dest: './public/images/uploads/'}));
+app.use(errorhandler());
 
-  console.log('start cluster with %s workers', numCPUs);
+// websocket server
+var server = http.createServer(app);
+//var ws = new (require('./controllers/websockets'))(server, utils, { 'timeSend' : true });
+//ws.start();
 
-  // Fork workers.
-  for (var i = 0; i < numCPUs; i++) {
-    cluster.fork();
-  }
+// routes
+fs.readdirSync('./routes').forEach(function(file) {
+  require('./routes/' + file)(app, server, utils);
+});
 
-  cluster.on('exit', function(worker, code, signal) {
-    console.log('worker ' + worker.process.pid + ' died... restarting.');
-    cluster.fork();
-  });
-
-} else {
-  
-  start();
-
-}
-
-process.on('uncaughtException', function (err) {
-  console.error((new Date).toUTCString() + ' uncaughtException:', err.message)
-  process.exit(1)
+// listen
+server.listen(port, function () {
+  console.log('%s listening at port %s', package.name, port);
 });

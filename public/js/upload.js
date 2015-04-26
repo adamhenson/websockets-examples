@@ -1,22 +1,5 @@
 (function(){
 
-  var ws = {
-    host : 'ws://' + window.document.location.host.replace(/:.*/, '') + ':8080',
-    connections : []
-  };
-
-  function createWebsocketConnection(onmessage){
-    var length = ws.connections.length;
-    ws.connections[length] = new WebSocket(ws.host);
-    ws.connections[length].onclose = function(){
-      createWebsocketConnection(onmessage);
-    }
-    // handle websocket events
-    ws.connections[length].onmessage = function(event){
-      onmessage.call(this, event);
-    };
-  };
-
   function submit($this, callback){
 
     var formData = new FormData($this[0]);
@@ -75,16 +58,24 @@
     $('.alert').remove();
     $('img').remove();
 
-    // manage websocket connections
-    createWebsocketConnection(function(event){
-      var message = JSON.parse(event.data);
-      if(typeof message.type !== 'undefined') {
-        if(message.type === 'progress') displayProgress(message);
-        else if(message.type === 'result') displayResult(message);
-        else if(message.type === 'error') displayResult(message);
-      };
-    });
-
   });
+
+  var wsHost = 'ws://' + window.document.location.host.replace(/:.*/, '') + ':8080';
+  ws = new WebSocket(wsHost);
+  ws.onopen = function(event){
+    console.log('open ws.'); 
+  }
+  ws.onclose = function(){
+    console.log('closed ws.'); 
+  }
+  // handle websocket events
+  ws.onmessage = function(event){
+    var message = JSON.parse(event.data);
+    if(typeof message.type !== 'undefined') {
+      if(message.type === 'progress') displayProgress(message);
+      else if(message.type === 'result') displayResult(message);
+      else if(message.type === 'error') displayResult(message);
+    };
+  };
 
 })();

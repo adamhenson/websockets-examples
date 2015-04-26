@@ -15,6 +15,8 @@ module.exports = function() {
   var bodyParser = require('body-parser');
   var errorhandler = require('errorhandler');
   var multer  = require('multer');
+  // other modules
+  var sticky = require('sticky-session');
 
   // configuration
   app.use(express.static(__dirname + '/public'));
@@ -24,7 +26,7 @@ module.exports = function() {
   app.use(errorhandler());
 
   // used for websocket server
-  server = http.createServer(app);
+  var server = sticky(http.createServer(app));
 
   // routes
   fs.readdirSync('./routes').forEach(function(file) {

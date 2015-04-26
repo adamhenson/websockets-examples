@@ -3,11 +3,11 @@ var Uploader = require('s3-image-uploader');
 module.exports = function(app, server, utils){
 
   var uploader = new Uploader({
-    aws : {
-      key : process.env.NODE_AWS_KEY,
-      secret : process.env.NODE_AWS_SECRET
+    'aws' : {
+      'key' : process.env.NODE_AWS_KEY,
+      'secret' : process.env.NODE_AWS_SECRET
     },
-    server : server
+    'server' : server
   });
 
   app.post('/upload', function(req, res, next){
