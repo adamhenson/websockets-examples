@@ -60,7 +60,7 @@
 
   });
 
-  var wsHost = 'ws://' + window.document.location.host.replace(/:.*/, '') + ':8080';
+  var wsHost = 'ws://' + window.document.location.host.replace(/:.*/, '') + ':3004';
   ws = new WebSocket(wsHost);
   ws.onopen = function(event){
     console.log('open ws.'); 

@@ -17,7 +17,7 @@ Websocket.prototype = {
 
     var self = this;
 
-    self.wss = new WebSocketServer({ 'server' : self.server, 'port' : 3004 });
+    self.wss = new WebSocketServer({ 'server' : self.server });
 
     self.wss.on('connection', function connection(ws) {
       console.log('websocket connected');

@@ -7,7 +7,8 @@ module.exports = function(app, server, utils){
       'key' : process.env.NODE_AWS_KEY,
       'secret' : process.env.NODE_AWS_SECRET
     },
-    'server' : server
+    'server' : server,
+    'port' : 3004
   });
 
   app.post('/upload', function(req, res, next){
