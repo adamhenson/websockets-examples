@@ -17,7 +17,7 @@
     e.preventDefault();
     $('#server-time-display').append('<p>Logging server time every minute...</p>');
 
-    ws = new WebSocket('ws://localhost:8080');
+    ws = new WebSocket('ws://localhost:3004');
 
     ws.onmessage = function(e){
       displayServerTime(e.data);

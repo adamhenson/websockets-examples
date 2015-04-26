@@ -23,8 +23,8 @@ app.use(errorhandler());
 
 // websocket server
 var server = http.createServer(app);
-//var ws = new (require('./controllers/websockets'))(server, utils, { 'timeSend' : true });
-//ws.start();
+var ws = new (require('./controllers/websockets'))(server, utils, { 'timeSend' : true });
+ws.start();
 
 // routes
 fs.readdirSync('./routes').forEach(function(file) {
