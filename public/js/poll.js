@@ -3,6 +3,9 @@
   var poller;
   var time = false;
 
+  // Make AJAX request, and retrieve the JSON
+  // response, and call the callback function.
+  // '/time' responds with the server time.
   function getServerTime(callback){
 
     var self = this;
@@ -13,6 +16,8 @@
 
   };
 
+  // Get the server time and append data to the DOM.
+  // Also, store the time, so we only display a new time.
   function displayServerTime(){
 
     getServerTime(function(data){
@@ -24,7 +29,14 @@
 
   };
 
-  $('#btn-start-polling').on('click', function(e){
+  /**
+   *
+   * DOM event binding
+   *
+   */
+
+  // start polling on button click
+  $('#btn-start').on('click', function(e){
 
     e.preventDefault();
     $('#server-time-display').append('<p>Logging server time every minute...</p>');
@@ -35,7 +47,8 @@
 
   });
 
-  $('#btn-stop-polling').on('click', function(e){
+  // stop polling on button click
+  $('#btn-stop').on('click', function(e){
 
     e.preventDefault();
     $('#server-time-display').append('<p>...Stopped logging.</p>');
