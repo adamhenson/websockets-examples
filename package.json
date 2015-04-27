@@ -1,6 +1,6 @@
 {
   "name": "websockets-examples",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Adam Henson <adamhenson1979@gmail.com>",
   "description": "WebSockets examples.",
   "contributors": [
@@ -19,7 +19,7 @@
     "express-flash": "0.0.2",
     "express-session": "^1.9.3",
     "ws": "~0.7.1",
-    "s3-image-uploader": "0.0.9",
+    "s3-image-uploader": "0.1.11",
     "multer": "^0.1.8"
   },
   "repository": {
