@@ -31,7 +31,7 @@
     var resultClass = '';
 
     if(message.type === 'error') {
-      result = 'Error, ' + message.error;
+      result = 'Error, ' + message.message;
       resultClass = 'danger';
     } else {
       result = 'Success, image uploaded!';

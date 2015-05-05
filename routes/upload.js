@@ -32,7 +32,7 @@ module.exports = function(app, server, utils){
 
     }, function(errMsg){ //error
 
-      console.error('unable to upload: ' + errMsg);
+      console.error('unable to upload: ', errMsg);
       utils.jsonResponse(req, res, 200, { 'message' : 'error!' });
       return next();
 
