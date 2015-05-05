@@ -20,7 +20,7 @@ module.exports = function(app, server, utils){
     uploader.upload({
 
       fileId : dateString,
-      bucket : 'hensonism-test',
+      bucket : process.env.NODE_AWS_BUCKET,
       source : file.path,
       name : file.name
 
